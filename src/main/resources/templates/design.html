@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đặt bánh mì nào !!!</title>
+</head>
+<body>
+    <h1>Xin mời lựa chọn các nguyên liệu cho bánh mì của bạn :D !</h1>
+
+    <form method="POST" th:object="${design}">
+        <div>
+            <div>
+                <h3>Có cần thêm sốt gì không ?</h3>
+                <div th:each="ingredient : ${sauce}">
+                    <input type="checkbox" name="ingredients" th:value="${ingredient.id}">
+                    <h5 th:text="${ingredient.name}">SỐT</h5>
+                </div>
+            </div>
+            <div>
+                <h3>Ăn trứng không ?</h3>
+                <div th:each="ingredient : ${egg}">
+                    <input type="checkbox" name="ingredients" th:value="${ingredient.id}">
+                    <h5 th:text="${ingredient.name}">ĂN TRỨNG KHÔNG</h5>
+                </div>
+            </div>
+            <div>
+                <h3>Thích bò kiểu gì ?</h3>
+                <div th:each="ingredient : ${beef}">
+                    <input type="checkbox" name="ingredients" th:value="${ingredient.id}">
+                    <h5 th:text="${ingredient.name}">THỊT BÒ</h5>
+                </div>
+            </div>
+            <div>
+                <h3>Thích heo kiểu gì ?</h3>
+                <div th:each="ingredient : ${pork}">
+                    <input type="checkbox" name="ingredients" th:value="${ingredient.id}">
+                    <h5 th:text="${ingredient.name}">THỊT HEO</h5>
+                </div>
+            </div>
+            <div>
+                <h3>Thích ăn rau không ?</h3>
+                <div th:each="ingredient : ${veges}">
+                    <input type="checkbox" name="ingredients" th:value="${ingredient.id}">
+                    <h5 th:text="${ingredient.name}">RAU CỦ</h5>
+                </div>
+            </div>
+        </div>
+        <div>
+            <h1>Tên để gọi chiếc bánh tuyệt vời này</h1>
+            <input type="text" th:field="*{name}">
+            <button type="sumbit">Đặt</button>
+        </div>
+    </form>
+</body>
+</html>
