@@ -7,6 +7,48 @@
     <title>Order !!!</title>
 </head>
 <body>
-    
+    <form method="POST" th:action="@{/orders}" th:object="${order}">
+        <h1>Thieetys kế bánh mì của bạn nào :Đ</h1>
+        <img th:src="@{/images/a.jpg}" alt="A picture about BanhMi">
+        <a th:href="@{/design}">Làm lại cái bánh mì mới</a>
+        <div th:if="${#fields.hasErrors()}">
+            <span>Xin vui lòng lựa chọn lại !!!</span>
+        </div>
+        <h3>Mời nhập thông tin cần thiết cho việc giao hàng ...</h3>
+        <label for="name">Đơn hàng</label>
+        <input type="text" th:fields="*{name}">
+        </br>
+
+        <label for="stress">Tên đường</label>
+        <input type="text" th:fields="*{street}">
+        </br>
+        
+        <label for="city">Thành phố</label>
+        <input type="text" th:fields="*{city}">
+        </br>
+        
+        <label for="state">Quận/ Huyện</label>
+        <input type="text" th:fields="*{state}">
+        </br>
+        
+        <label for="zip">Mã ZIP</label>
+        <input type="text" th:fields="*{name}">
+        </br>
+        
+        <h3>Thanh toán</h3>
+        <label for="ccNumber">Số thẻ ##:</label>
+        <input type="text" th:fields="*{ccNUmber}">
+        </br>
+
+        <label for="ccExpiration">Ngày hết hạn thẻ</label>
+        <input type="text" th:fields="*{ccExpiration}">
+        </br>
+        
+        <label for="ccCVV">CVV</label>
+        <input type="text" th:fields="*{cccCVV}">
+        </br>
+
+        <input type="submit" value="Submit">
+    </form>
 </body>
 </html>
