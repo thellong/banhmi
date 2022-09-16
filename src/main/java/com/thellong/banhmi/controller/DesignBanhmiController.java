@@ -4,8 +4,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +18,9 @@ import com.thellong.banhmi.model.Design;
 import com.thellong.banhmi.model.Ingredient;
 import com.thellong.banhmi.model.Ingredient.TYPE;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Controller
 @RequestMapping("/design")
 public class DesignBanhmiController {
@@ -46,8 +52,14 @@ public class DesignBanhmiController {
         return "design";
     }
 
+    // Add validate for the needed method
     @PostMapping
-    public String processDesign(Design design) {
+    public String processDesign(@Valid Design design, Errors errors) {
+        if (errors.hasErrors()) {
+            return "design";
+        }
+
+        log.info("Processing design: " + design);
         return "redirect:/orders/current";
     }
 
