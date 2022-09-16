@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order !!!</title>
+</head>
+<body>
+    <form method="POST" th:action="@{/orders}" th:object="${order}">
+        <h1>Thieetys kế bánh mì của bạn nào :Đ</h1>
+        <img th:src="@{/images/a.jpg}" alt="A picture about BanhMi">
+        <a th:href="@{/design}">Làm lại cái bánh mì mới</a>
+        <div th:if="${#fields.hasErrors()}">
+            <span>Xin vui lòng lựa chọn lại !!!</span>
+        </div>
+        <h3>Mời nhập thông tin cần thiết cho việc giao hàng ...</h3>
+        <label for="name">Đơn hàng</label>
+        <input type="text" th:field="*{name}" />
+        <span style="color: red;" 
+                th:if="${#fields.hasErrors('name')}"
+                th:errors="*{name}" >
+                Yêu cầu nhập tên
+        </span>
+        </br>
+
+        <label for="street">Tên đường</label>
+        <input type="text" th:field="*{street}" />
+        <span style="color: red;" 
+                th:if="${#fields.hasErrors('street')}"
+                th:errors="*{street}" >
+                Yêu cầu nhập tên đường
+        </span>
+        </br>
+        
+        <label for="city">Thành phố</label>
+        <input type="text" th:field="*{city}" />
+        <span style="color: red;" 
+                th:if="${#fields.hasErrors('city')}"
+                th:errors="*{city}" >
+                Yêu cầu nhập tên thành phố
+        </span>
+        </br>
+        
+        <label for="state">Quận/ Huyện</label>
+        <input type="text" th:field="*{state}" />
+        <span style="color: red;" 
+                th:if="${#fields.hasErrors('state')}"
+                th:errors="*{state}" >
+                Yêu cầu nhập tên quận Huyện
+        </span>
+        </br>
+        
+        <label for="zip">Mã ZIP</label>
+        <input type="text" th:field="*{zip}" />
+        <span style="color: red;" 
+                th:if="${#fields.hasErrors('zip')}"
+                th:errors="*{zip}" >
+                Yêu cầu nhập mã bưu điện
+        </span>
+        </br>
+        
+        <h3>Thanh toán</h3>
+        <label for="ccNumber">Số thẻ ##:</label>
+        <input type="text" th:field="*{ccNumber}" />
+        <span style="color: red;" 
+                th:if="${#fields.hasErrors('ccNumber')}"
+                th:errors="*{ccNumber}" >
+                Yêu cầu nhập số thẻ
+        </span>
+        </br>
+
+        <label for="ccExpiration">Ngày hết hạn thẻ</label>
+        <input type="text" th:field="*{ccExpiration}" />
+        <span style="color: red;" 
+                th:if="${#fields.hasErrors('ccExpiration')}"
+                th:errors="*{ccExpiration}" >
+                Ngày hết hạn thẻ không đúng định dạng
+        </span>
+        </br>
+        
+        <label for="ccCVV">CVV</label>
+        <input type="text" th:field="*{ccCVV}" />
+        <span style="color: red;" 
+                th:if="${#fields.hasErrors('ccCVV')}"
+                th:errors="*{ccCVV}" >
+                CVV không đúng
+        </span>
+
+        </br>
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
