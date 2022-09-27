@@ -1,25 +1,28 @@
-create table if not exists Taco (
-    id identity primary key,
-    name varchar(25) not null,
-    createdAt timestamp not null
-);
+drop database banhmi;
+create database banhmi;
+use banhmi;
 
 create table if not exists Ingredient (
-    id varchar(14) not null primary key,
+    id varchar(4) not null primary key,
     name varchar(25) not null,
     type varchar(10) not null
 );
-
-create table if not exists Taco_Ingredients (
-    taco bigint not null,
-    ingredient varchar(14) not null
+create table if not exists Banhmi (
+    id bigint primary key,
+    name varchar(50) not null,
+    createdAt timestamp not null
 );
+create table if not exists Banhmi_Ingredients (
+    banhmi bigint not null,
+    ingredient varchar(4) not null
+);
+alter table Banhmi_Ingredients
+add foreign key (banhmi) references Banhmi(id);
+alter table Banhmi_Ingredients
+add foreign key (ingredient) references Ingredient(id);
 
-alter table Taco_Ingredients add foreign key (taco) references Taco(id);
-alter table Taco_Ingredients add foreign key (ingredient) references Ingredient(id);
-
-create table if not exists Taco_Order (
-    id identity,
+create table if not exists Banhmi_Order (
+    id bigint primary key,
     deliveryName varchar(50) not null,
     deliveryStreet varchar(50) not null,
     deliveryCity varchar(50) not null,
@@ -30,11 +33,11 @@ create table if not exists Taco_Order (
     ccCVV varchar(3) not null,
     placedAt timestamp not null
 );
-
-create table if not exists Taco_Order_Tacos (
-    tacoOrder bigint not null,
-    taco bigint not null
+create table if not exists Banhmi_Order_Banhmis (
+    banhmiOrder bigint not null,
+    banhmi bigint not null
 );
-
-alter table Taco_Order_Tacos add foreign key (tacoOrder) references Taco_Order (id);
-alter table Taco_Order_Tacos add foreign key (taco) references Taco (id);
+alter table Banhmi_Order_Banhmis
+add foreign key (banhmiOrder) references Banhmi_Order(id);
+alter table Banhmi_Order_Banhmis
+add foreign key (banhmi) references Banhmi(id);

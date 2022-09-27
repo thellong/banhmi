@@ -51,9 +51,9 @@ public class DesignBanhmiController {
         //     new Ingredient("RAU_T", "Co rau", TYPE.VEGES),
         //     new Ingredient("RAU_K", "Khong rau", TYPE.VEGES)
         // );
-
+                                                                                         
         List<Ingredient> ingredients = new ArrayList<>();
-        ingredientRepository.findAll().forEach(item -> ingredients.add(item));
+        ingredientRepository.findAll().forEach(ingredients::add);
 
         TYPE[] types = Ingredient.TYPE.values();
         for (TYPE type : types) {
